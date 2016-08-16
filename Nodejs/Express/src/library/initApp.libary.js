@@ -1,6 +1,9 @@
 var objPath = require('path');
 var rootPath = objPath.join(__dirname, '../../');
 var data = {
+        server: {
+            port: 3030
+        },
         path:  {
             layout: rootPath + "src/view/layout/",
             view: rootPath + "src/view/",
@@ -10,7 +13,32 @@ var data = {
             },
             libary: rootPath + "src/library/",
             public: rootPath + "public/"
+        },
+        view: {
+            layout: {
+                default: "main"
+            }
         }
     };
 
-exports.appData = data;
+exports.data = data;
+
+exports.init = function(app, express) {
+    var objHandlebars = require('express-handlebars')
+        .create({
+            layoutsDir: data.path.layout,
+            defaultLayout: data.view.layout.default
+        });
+
+    app.set('views', data.path.view);
+    app.set('view engine', 'handlebars');
+    app.engine('handlebars', objHandlebars.engine);
+    app.set('port', data.server.port);
+    app.use(express.static(data.path.public));
+};
+
+exports.listen = function(app) {
+    app.listen(app.get('port'), function() {
+        console.log( 'Express started on http://localhost:' + data.server.port + '; press Ctrl-C to terminate.');
+    });
+};

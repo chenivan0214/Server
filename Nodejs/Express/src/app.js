@@ -1,4 +1,6 @@
-var objInitApp = require('./libary/initApp.js');
+'use strict';
+
+var objInitApp = require('./library/initApp.libary.js');
 var objHandlebars = require('express-handlebars')
     .create({
         layoutsDir: objInitApp.appData.path.layout,

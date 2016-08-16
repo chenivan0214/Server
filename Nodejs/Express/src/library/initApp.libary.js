@@ -4,7 +4,8 @@ var data = {
         path:  {
             layout: rootPath + "src/view/layout/",
             view: rootPath + "src/view/",
-            libary: rootPath + "src/libary/",
+            route: rootPath + "src/route/",
+            libary: rootPath + "src/library/",
             public: rootPath + "public/"
         }
     };

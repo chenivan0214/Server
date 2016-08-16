@@ -4,7 +4,10 @@ var data = {
         path:  {
             layout: rootPath + "src/view/layout/",
             view: rootPath + "src/view/",
-            route: rootPath + "src/route/",
+            route: {
+                general: rootPath + "src/route/general/",
+                other: rootPath + "src/route/other/"
+            },
             libary: rootPath + "src/library/",
             public: rootPath + "public/"
         }

@@ -7,7 +7,8 @@ var data = {
         path:  {
             view: {
                 root: rootPath + "src/view/",
-                layout: rootPath + "src/view/layout/"
+                layout: rootPath + "src/view/layout/",
+                partial: rootPath + "src/view/partial/"
             },
             route: {
                 general: rootPath + "src/route/general/",
@@ -29,6 +30,7 @@ exports.init = function(app, express) {
     var objHandlebars = require('express-handlebars')
         .create({
             layoutsDir: data.path.view.layout,
+            partialsDir: data.path.view.partial,
             defaultLayout: data.view.layout.default
         });
 

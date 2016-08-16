@@ -1,5 +1,11 @@
 exports.url = function(app) {
     app.get('/', function(req, res) {
-        res.render('index', {title: "test"});
+        var data = {
+            top: {
+                title: "top"
+            },
+            title: "test"
+        };
+        res.render('index', data);
     });
 };

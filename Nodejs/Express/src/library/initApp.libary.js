@@ -5,8 +5,10 @@ var data = {
             port: 3030
         },
         path:  {
-            layout: rootPath + "src/view/layout/",
-            view: rootPath + "src/view/",
+            view: {
+                root: rootPath + "src/view/",
+                layout: rootPath + "src/view/layout/"
+            },
             route: {
                 general: rootPath + "src/route/general/",
                 other: rootPath + "src/route/other/"
@@ -26,11 +28,11 @@ exports.data = data;
 exports.init = function(app, express) {
     var objHandlebars = require('express-handlebars')
         .create({
-            layoutsDir: data.path.layout,
+            layoutsDir: data.path.view.layout,
             defaultLayout: data.view.layout.default
         });
 
-    app.set('views', data.path.view);
+    app.set('views', data.path.view.root);
     app.set('view engine', 'handlebars');
     app.engine('handlebars', objHandlebars.engine);
     app.set('port', data.server.port);

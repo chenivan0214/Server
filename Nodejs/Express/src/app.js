@@ -1,35 +1,35 @@
-var path = require('path');
-var handlebars = require('express-handlebars')
+var objInitApp = require('./libary/initApp.js');
+var objHandlebars = require('express-handlebars')
     .create({
-        layoutsDir: path.join(__dirname, 'views/layout'),
+        layoutsDir: objInitApp.appData.path.layout,
         defaultLayout: "main"
     });
-var express = require('express');
-var app = express();
+var objExpress = require('express');
+var objApp = objExpress();
 
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'handlebars');
-app.engine('handlebars', handlebars.engine);
-app.set('port', 3030);
-app.use(express.static(path.join(__dirname, '../public/')));
+objApp.set('views', objInitApp.appData.path.view);
+objApp.set('view engine', 'handlebars');
+objApp.engine('handlebars', objHandlebars.engine);
+objApp.set('port', 3030);
+objApp.use(objExpress.static(objInitApp.appData.path.public));
 
-app.get('/', function(req, res) {
-    res.render('index');
+objApp.get('/', function(req, res) {
+    res.render('index', {title: "test"});
 });
 
-app.use(function(req, res) {
+objApp.use(function(req, res) {
     res.type('text/plain');
     res.status(404);
     res.send('404 - Not Found');
 });
 
-app.use(function(err, req, res, next) {
+objApp.use(function(err, req, res, next) {
     console.error(err.stack);
     res.type('text/plain');
     res.status(500);
     res.send('500 - Server Error');
 });
 
-app.listen(app.get('port'), function() {
-    console.log( 'Express started on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.');
+objApp.listen(objApp.get('port'), function() {
+    console.log( 'Express started on http://localhost:' + objApp.get('port') + '; press Ctrl-C to terminate.');
 });

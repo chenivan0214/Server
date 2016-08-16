@@ -1,5 +1,5 @@
-var objPath = require('path');
-var rootPath = objPath.join(__dirname, '../../');
+var modPath = require('path');
+var rootPath = modPath.join(__dirname, '../../');
 var data = {
         server: {
             port: 3030

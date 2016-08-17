@@ -39,6 +39,7 @@ exports.init = function(app, express) {
     app.engine('handlebars', objHandlebars.engine);
     app.set('port', data.server.port);
     app.use(express.static(data.path.public));
+    app.use(require('body-parser')());
 };
 
 exports.listen = function(app) {

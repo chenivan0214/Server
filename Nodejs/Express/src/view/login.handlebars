@@ -1,1 +1,22 @@
-login
+{{#if notLogin}}
+<form action="/login/process?op=check" method="post">
+<table>
+    <tr>
+        <td>Account:</td>
+        <td><input type="text" id="account" name="account"/></td>
+    </tr>
+    <tr>
+        <td>Password:</td>
+        <td><input type="password" id="password" name="password"/></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td><button type="submit" id="btnSubmit" name="btnSubmit">Submit</button></td>
+    </tr>
+</table>
+</form>
+{{else}}
+Account: {{account}}
+<br/>
+Password: {{password}}
+{{/if}}

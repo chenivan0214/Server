@@ -3,8 +3,16 @@
 var modPath = require('path');
 var rootPath = modPath.join(__dirname, '../../');
 var data = {
+        env: "development",
         server: {
-            port: 3030
+            development: {
+                port: 3030,
+                staticMaxAge: 1
+            },
+            production: {
+                port: 80,
+                staticMaxAge: 60 * 60 * 24
+            }
         },
         path:  {
             view: {
@@ -32,7 +40,7 @@ var data = {
 
 exports.data = data;
 
-exports.init = function(app, express) {
+exports.init = function(app, express, errorhandler) {
     var objHandlebars = require('express-handlebars')
         .create({
             layoutsDir: data.path.view.layout,
@@ -43,8 +51,16 @@ exports.init = function(app, express) {
     app.set('views', data.path.view.root);
     app.set('view engine', 'handlebars');
     app.engine('handlebars', objHandlebars.engine);
-    app.set('port', data.server.port);
-    app.use(express.static(data.path.public));
+
+    if (data.env === "development") {
+        app.set('port', data.server.development.port);
+        app.use(express.static(data.path.public, {maxAge: data.server.development.staticMaxAge}));
+        app.use(errorhandler());
+    } else {
+        app.set('port', data.server.production.port);
+        app.use(express.static(data.path.public));
+    }
+
     app.use(require('body-parser')());
 };
 

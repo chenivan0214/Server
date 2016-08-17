@@ -12,11 +12,15 @@ var data = {
                 layout: rootPath + "src/view/layout/",
                 partial: rootPath + "src/view/partial/"
             },
+            libary: rootPath + "src/library/",
             route: {
+                root: rootPath + "src/route/",
                 general: rootPath + "src/route/general/",
                 other: rootPath + "src/route/other/"
             },
-            libary: rootPath + "src/library/",
+            filter: {
+                root: rootPath + "src/filter/",
+            },
             public: rootPath + "public/"
         },
         view: {

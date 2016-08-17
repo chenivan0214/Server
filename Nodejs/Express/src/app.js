@@ -8,6 +8,9 @@ var modFs = require("fs");
 //init app
 modInitApp.init(modApp, modExpress);
 
+//load global filter
+require(modInitApp.data.path.filter.root + "global.filter.js").url(modApp);
+
 //load general route
 modFs.readdirSync(modInitApp.data.path.route.general).forEach(function(file) {
     require(modInitApp.data.path.route.general + file).url(modApp);

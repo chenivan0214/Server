@@ -20,11 +20,17 @@ module.exports = function(grunt) {
             },
             express: {
                 files: ['./src/**/*'],
-                tasks: ['express:dev'],
+                tasks: ['express:dev', 'jshint'],
                 options: {
                     spawn: false
                 }
             }
+        },
+        jshint: {
+            options: {
+                jshintrc: '.jshintrc'
+            },
+            build: ['src/app.js', 'src/library/**/*', 'src/route/**/*']
         }
     });
 

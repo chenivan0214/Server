@@ -1,3 +1,5 @@
+'use strict';
+
 exports.url = function(app) {
     app.get('/login', function(req, res) {
         var data = {

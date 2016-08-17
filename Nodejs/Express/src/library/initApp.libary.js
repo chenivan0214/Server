@@ -1,3 +1,5 @@
+'use strict';
+
 var modPath = require('path');
 var rootPath = modPath.join(__dirname, '../../');
 var data = {

@@ -5,6 +5,7 @@ exports.url = function(app) {
         var data = {
             notLogin: true
         };
+
         res.render('login', data);
     });
 

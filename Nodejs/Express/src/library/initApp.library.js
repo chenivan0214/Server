@@ -8,11 +8,13 @@ var data = {
             development: {
                 port: 3030,
                 staticMaxAge: 1,
+                cookieMaxAge: 6000,
                 log: "expressLogging"
             },
             production: {
                 port: 80,
-                staticMaxAge: 60 * 60 * 24
+                staticMaxAge: 60 * 60 * 24,
+                cookieMaxAge: 6000
             }
         },
         path:  {
@@ -57,15 +59,32 @@ exports.init = function(app, express, errorhandler) {
     if (data.env === "development") {
         app.set('port', data.server.development.port);
         app.use(express.static(data.path.public, {maxAge: data.server.development.staticMaxAge}));
+        app.use(require('express-session')({
+            secret: 'abcdefg',
+            cookie: {
+                secure: false,
+                maxAge: data.server.development.cookieMaxAge
+            }}));
         app.use(errorhandler());
         modLog.expressLogging(app);
     } else {
         app.set('port', data.server.production.port);
         app.use(express.static(data.path.public));
+        app.use(require('express-session')({
+            secret: 'abcdefg',
+            cookie: {
+                secure: false,
+                maxAge: data.server.production.cookieMaxAge
+            }}));
     }
 
     //enable parse for post
     app.use(require('body-parser')());
+
+    //integate other module
+    var objExtension = {};
+
+    return objExtension;
 };
 
 exports.listen = function(app) {

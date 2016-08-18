@@ -2,6 +2,16 @@
 
 exports.url = function(app) {
     app.get('/', function(req, res) {
+        //log
+        var modLogger = require('logops');
+        modLogger.info("[/][into]");
+
+        if (req.session.account === undefined) {
+            modLogger.info("[/][account is undefined]");
+            res.redirect('/login');
+            return;
+        }
+
         var data = {
             top: {
                 title: "top"
@@ -9,9 +19,5 @@ exports.url = function(app) {
             title: "test"
         };
         res.render('index', data);
-
-        //log
-        var modLogger = require('logops');
-        modLogger.info("index log");
     });
 };

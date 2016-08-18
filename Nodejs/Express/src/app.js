@@ -7,7 +7,7 @@ var modInitApp = require('./library/initApp.library.js');
 var modFs = require("fs");
 
 //init app
-modInitApp.init(modApp, modExpress, modErrorhandler);
+modApp.ext = modInitApp.init(modApp, modExpress, modErrorhandler);
 
 //load global filter
 require(modInitApp.data.path.filter.root + "global.filter.js").url(modApp);

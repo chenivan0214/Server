@@ -9,5 +9,9 @@ exports.url = function(app) {
             title: "test"
         };
         res.render('index', data);
+
+        //log
+        var modLogger = require('logops');
+        modLogger.info("index log");
     });
 };

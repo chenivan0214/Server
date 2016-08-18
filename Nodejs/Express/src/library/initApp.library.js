@@ -7,7 +7,8 @@ var data = {
         server: {
             development: {
                 port: 3030,
-                staticMaxAge: 1
+                staticMaxAge: 1,
+                log: "expressLogging"
             },
             production: {
                 port: 80,
@@ -20,7 +21,7 @@ var data = {
                 layout: rootPath + "src/view/layout/",
                 partial: rootPath + "src/view/partial/"
             },
-            libary: rootPath + "src/library/",
+            library: rootPath + "src/library/",
             route: {
                 root: rootPath + "src/route/",
                 general: rootPath + "src/route/general/",
@@ -47,6 +48,7 @@ exports.init = function(app, express, errorhandler) {
             partialsDir: data.path.view.partial,
             defaultLayout: data.view.layout.default
         });
+    var modLog = require(data.path.library + "log.library.js");
 
     app.set('views', data.path.view.root);
     app.set('view engine', 'handlebars');
@@ -56,11 +58,13 @@ exports.init = function(app, express, errorhandler) {
         app.set('port', data.server.development.port);
         app.use(express.static(data.path.public, {maxAge: data.server.development.staticMaxAge}));
         app.use(errorhandler());
+        modLog.expressLogging(app);
     } else {
         app.set('port', data.server.production.port);
         app.use(express.static(data.path.public));
     }
 
+    //enable parse for post
     app.use(require('body-parser')());
 };
 

@@ -18,6 +18,7 @@
     "grunt-contrib-watch": "^1.0.0",
     "grunt-express-server": "^0.5.3",
     "load-grunt-tasks": "^3.5.2",
+    "logops": "^1.0.1",
     "nodemon": "^1.10.0"
   }
 }

@@ -84,7 +84,9 @@ exports.init = function(app, express, errorhandler) {
     //integate other module
     var objExtension = {};
 
-    return objExtension;
+    objExtension._ = require('lodash');
+
+    app.ext = objExtension;
 };
 
 exports.listen = function(app) {

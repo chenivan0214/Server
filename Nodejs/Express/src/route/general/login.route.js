@@ -3,7 +3,7 @@
 exports.url = function(app) {
     app.get('/login', function(req, res) {
         var data = {
-            notLogin: true
+            notLogin: app.ext._.isUndefined(req.session.account)
         };
 
         res.render('login', data);

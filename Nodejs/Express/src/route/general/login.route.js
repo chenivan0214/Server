@@ -2,9 +2,7 @@
 
 exports.url = function(app) {
     app.get('/login', function(req, res) {
-        var modFile = require(app.data.path.library + "file.library.js"),
-            settingFilePath = app.data.path.cache.root + "setting.txt",
-            data = {
+        var data = {
                 notLogin: app.ext._.isUndefined(req.session.account)
             };
 

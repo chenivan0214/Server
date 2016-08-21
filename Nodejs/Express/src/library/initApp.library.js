@@ -2,48 +2,7 @@
 
 var modPath = require('path');
 var rootPath = modPath.join(__dirname, '../../');
-var data = {
-        env: "development",
-        lang: "UTF-8",
-        server: {
-            development: {
-                port: 3030,
-                staticMaxAge: 1,
-                cookieMaxAge: 6000,
-                log: "expressLogging"
-            },
-            production: {
-                port: 80,
-                staticMaxAge: 60 * 60 * 24,
-                cookieMaxAge: 6000
-            }
-        },
-        path: {
-            view: {
-                root: rootPath + "src/view/",
-                layout: rootPath + "src/view/layout/",
-                partial: rootPath + "src/view/partial/"
-            },
-            library: rootPath + "src/library/",
-            route: {
-                root: rootPath + "src/route/",
-                general: rootPath + "src/route/general/",
-                other: rootPath + "src/route/other/"
-            },
-            filter: {
-                root: rootPath + "src/filter/"
-            },
-            cache: {
-                root: rootPath + "cache/"
-            },
-            public: rootPath + "public/"
-        },
-        view: {
-            layout: {
-                default: "main"
-            }
-        }
-    };
+var data = require('../../data/web.setting.data.js').data(rootPath);
 
 exports.data = data;
 

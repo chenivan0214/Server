@@ -34,7 +34,7 @@ var data = {
                 root: rootPath + "src/filter/"
             },
             cache: {
-                root: rootPath + "src/cache/"
+                root: rootPath + "cache/"
             },
             public: rootPath + "public/"
         },

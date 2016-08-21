@@ -1,6 +1,6 @@
 'use strict';
 
-exports.data = function(rootPath) {
+exports.getData = function(rootPath) {
     var data = {};
 
     data.env =  "development";

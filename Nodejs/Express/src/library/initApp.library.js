@@ -4,6 +4,7 @@ var modPath = require('path');
 var rootPath = modPath.join(__dirname, '../../');
 var data = {
         env: "development",
+        lang: "UTF-8",
         server: {
             development: {
                 port: 3030,
@@ -17,7 +18,7 @@ var data = {
                 cookieMaxAge: 6000
             }
         },
-        path:  {
+        path: {
             view: {
                 root: rootPath + "src/view/",
                 layout: rootPath + "src/view/layout/",
@@ -30,7 +31,10 @@ var data = {
                 other: rootPath + "src/route/other/"
             },
             filter: {
-                root: rootPath + "src/filter/",
+                root: rootPath + "src/filter/"
+            },
+            cache: {
+                root: rootPath + "src/cache/"
             },
             public: rootPath + "public/"
         },
@@ -44,37 +48,42 @@ var data = {
 exports.data = data;
 
 exports.init = function(app, express, errorhandler) {
+    //integate with defulat data
+    app.data = data;
+
+    //set env
     var objHandlebars = require('express-handlebars')
         .create({
-            layoutsDir: data.path.view.layout,
-            partialsDir: data.path.view.partial,
-            defaultLayout: data.view.layout.default
+            layoutsDir: app.data.path.view.layout,
+            partialsDir: app.data.path.view.partial,
+            defaultLayout: app.data.view.layout.default
         });
-    var modLog = require(data.path.library + "log.library.js");
 
-    app.set('views', data.path.view.root);
+    var modLog = require(app.data.path.library + "log.library.js");
+
+    app.set('views', app.data.path.view.root);
     app.set('view engine', 'handlebars');
     app.engine('handlebars', objHandlebars.engine);
 
     if (data.env === "development") {
-        app.set('port', data.server.development.port);
-        app.use(express.static(data.path.public, {maxAge: data.server.development.staticMaxAge}));
+        app.set('port', app.data.server.development.port);
+        app.use(express.static(data.path.public, {maxAge: app.data.server.development.staticMaxAge}));
         app.use(require('express-session')({
             secret: 'abcdefg',
             cookie: {
                 secure: false,
-                maxAge: data.server.development.cookieMaxAge
+                maxAge: app.data.server.development.cookieMaxAge
             }}));
         app.use(errorhandler());
         modLog.expressLogging(app);
     } else {
-        app.set('port', data.server.production.port);
-        app.use(express.static(data.path.public));
+        app.set('port', app.data.server.production.port);
+        app.use(express.static(app.data.path.public));
         app.use(require('express-session')({
             secret: 'abcdefg',
             cookie: {
                 secure: false,
-                maxAge: data.server.production.cookieMaxAge
+                maxAge: app.data.server.production.cookieMaxAge
             }}));
     }
 

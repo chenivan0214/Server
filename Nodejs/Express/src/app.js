@@ -10,16 +10,16 @@ var modFs = require("fs");
 modInitApp.init(modApp, modExpress, modErrorhandler);
 
 //load global filter
-require(modInitApp.data.path.filter.root + "global.filter.js").url(modApp);
+require(modApp.data.path.filter.root + "global.filter.js").url(modApp);
 
 //load general route
 modFs.readdirSync(modInitApp.data.path.route.general).forEach(function(file) {
-    require(modInitApp.data.path.route.general + file).url(modApp);
+    require(modApp.data.path.route.general + file).url(modApp);
 });
 
 //load other route
-modFs.readdirSync(modInitApp.data.path.route.other).forEach(function(file) {
-    require(modInitApp.data.path.route.other + file).url(modApp);
+modFs.readdirSync(modApp.data.path.route.other).forEach(function(file) {
+    require(modApp.data.path.route.other + file).url(modApp);
 });
 
 //listen app

@@ -1,6 +1,6 @@
 'use strict';
 
-exports.getData = function(rootPath) {
+module.exports = function(rootPath) {
     var data = {};
 
     data.env =  "development";
@@ -29,7 +29,10 @@ exports.getData = function(rootPath) {
 
     data.path = {
         data: rootPath + "data/",
-        db: rootPath + "data/db",
+        db: {
+            root: "data/db",
+            setting: "data/db/setting/"
+        },
         view: {
             root: rootPath + "src/view/",
             layout: rootPath + "src/view/layout/",

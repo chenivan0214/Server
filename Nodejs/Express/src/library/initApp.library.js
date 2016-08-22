@@ -2,7 +2,7 @@
 
 var modPath = require('path');
 var rootPath = modPath.join(__dirname, '../../');
-var data = require('../../data/web.setting.data.js').getData(rootPath);
+var data = require('../../data/web.setting.data.js')(rootPath);
 
 exports.data = data;
 

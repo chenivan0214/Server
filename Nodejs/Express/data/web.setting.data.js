@@ -28,6 +28,8 @@ exports.getData = function(rootPath) {
     };
 
     data.path = {
+        data: rootPath + "data/",
+        db: rootPath + "data/db",
         view: {
             root: rootPath + "src/view/",
             layout: rootPath + "src/view/layout/",

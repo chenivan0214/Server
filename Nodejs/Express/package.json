@@ -21,6 +21,7 @@
     "load-grunt-tasks": "^3.5.2",
     "lodash": "^4.15.0",
     "logops": "^1.0.1",
+    "mysql": "^2.11.1",
     "nodemon": "^1.10.0"
   }
 }

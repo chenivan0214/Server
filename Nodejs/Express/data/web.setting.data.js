@@ -30,8 +30,8 @@ module.exports = function(rootPath) {
     data.path = {
         data: rootPath + "data/",
         db: {
-            root: "data/db",
-            setting: "data/db/setting/"
+            root: rootPath + "data/db/",
+            define: rootPath + "data/db/define/"
         },
         view: {
             root: rootPath + "src/view/",

@@ -53,6 +53,7 @@ exports.init = function(app, express, errorhandler) {
     var objExtension = {};
 
     objExtension._ = require('lodash');
+    objExtension.mysql = require(app.data.path.db.root + "mysql.connect.db.js")(app);
 
     app.ext = objExtension;
 };

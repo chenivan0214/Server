@@ -18,6 +18,6 @@ exports.url = function(app) {
             },
             title: "test"
         };
-        res.render('index', data);
+        res.render('index/index', data);
     });
 };

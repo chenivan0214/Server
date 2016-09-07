@@ -6,7 +6,7 @@ exports.url = function(app) {
                 notLogin: app.ext._.isUndefined(req.session.account)
             };
 
-        res.render('login', data);
+        res.render('login/index', data);
     });
 
     app.post('/login/process', function(req, res, next) {
@@ -24,6 +24,6 @@ exports.url = function(app) {
         });
 
         data = Object.assign(data, req.query, req.body);
-        res.render('login', data);
+        res.render('login/index', data);
     });
 };

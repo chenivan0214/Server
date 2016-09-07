@@ -1,6 +1,8 @@
 'use strict';
 
 exports.url = function(app) {
+    var modMysqlDb = require(app.data.path.db.root + "mysql.db.js");
+
     app.get('/login', function(req, res) {
         var data = {
                 notLogin: app.ext._.isUndefined(req.session.account)
@@ -13,15 +15,6 @@ exports.url = function(app) {
         var data = {
                 notLogin: false,
             };
-
-        var sql = "select * from `User` where `name` = '" + req.body.account + "';";
-
-        app.ext.mysql.connect();
-        app.ext.mysql.query(sql, function(err, result, field) {
-            if (err) {
-            }
-            console.log(result);
-        });
 
         data = Object.assign(data, req.query, req.body);
         res.render('login/index', data);

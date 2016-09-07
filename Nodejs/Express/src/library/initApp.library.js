@@ -53,13 +53,17 @@ exports.init = function(app, express, errorhandler) {
     var objExtension = {};
 
     objExtension._ = require('lodash');
-    objExtension.mysql = require(app.data.path.db.root + "mysql.connect.db.js")(app);
 
     app.ext = objExtension;
 };
 
 exports.listen = function(app) {
     app.listen(app.get('port'), function() {
-        console.log( 'Express started on http://localhost:' + data.server.port + '; press Ctrl-C to terminate.');
+        if (data.env === "development") {
+            console.log( 'Express started on http://localhost:' + data.server.development.port + '; press Ctrl-C to terminate.');
+        } else {
+            console.log( 'Express started on http://localhost:' + data.server.production.port + '; press Ctrl-C to terminate.');
+        }
+
     });
 };

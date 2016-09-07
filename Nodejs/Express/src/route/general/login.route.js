@@ -4,19 +4,15 @@ exports.url = function(app) {
     var modMysqlDb = require(app.data.path.db.root + "mysql.db.js");
 
     app.get('/login', function(req, res) {
-        var data = {
-                notLogin: app.ext._.isUndefined(req.session.account)
-            };
+        var tmpData = { notLogin: app.ext._.isUndefined(req.session.account) };
 
-        res.render('login/index', data);
+        res.render('login/index', tmpData);
     });
 
     app.post('/login/process', function(req, res, next) {
-        var data = {
-                notLogin: false,
-            };
+        var tmpData = { notLogin: false };
 
-        data = Object.assign(data, req.query, req.body);
-        res.render('login/index', data);
+        tmpData = Object.assign(tmpData, req.query, req.body);
+        res.render('login/index', tmpData);
     });
 };

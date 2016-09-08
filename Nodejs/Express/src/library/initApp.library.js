@@ -52,6 +52,7 @@ exports.init = function(app, express, errorhandler) {
     //integate other module
     var objExtension = {};
 
+    objExtension.mysql = require(app.data.path.db.root + "mysql.js");
     objExtension._ = require('lodash');
 
     app.ext = objExtension;

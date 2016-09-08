@@ -2,7 +2,7 @@
 
 var modMysql = require('mysql');
 
-exports.query = function(app, sql, callback) {
+exports.select = function(app, sql, callback) {
     var objDefine = require(app.data.path.db.define + "mysql.define.js"),
         objDb = modMysql.createConnection(objDefine);
 

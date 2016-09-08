@@ -1,11 +1,8 @@
 'use strict';
 
 exports.url = function(app) {
-    var modMysqlDb = require(app.data.path.db.root + "mysql.db.js");
-
     app.get('/login', function(req, res) {
         var tmpData = { notLogin: app.ext._.isUndefined(req.session.account) };
-
         res.render('login/index', tmpData);
     });
 

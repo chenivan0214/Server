@@ -18,7 +18,7 @@ exports.init = function(app, express, errorhandler) {
             defaultLayout: app.data.view.layout.default
         });
 
-    var modLog = require(app.data.path.library + "log.library.js");
+    var modLog = require(app.data.path.library.root + "log.library.js");
 
     app.set('views', app.data.path.view.root);
     app.set('view engine', 'handlebars');
@@ -52,7 +52,7 @@ exports.init = function(app, express, errorhandler) {
     //integate other module
     var objExtension = {};
 
-    objExtension.mysql = require(app.data.path.db.root + "mysql.js");
+    objExtension.mysql = require(app.data.path.library.db + "mysql.library.js");
     objExtension._ = require('lodash');
 
     app.ext = objExtension;

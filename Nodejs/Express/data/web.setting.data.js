@@ -30,15 +30,17 @@ module.exports = function(rootPath) {
     data.path = {
         data: rootPath + "data/",
         db: {
-            root: rootPath + "data/db/",
-            define: rootPath + "data/db/define/"
+            root: rootPath + "data/db/"
         },
         view: {
             root: rootPath + "src/view/",
             layout: rootPath + "src/view/layout/",
             partial: rootPath + "src/view/partial/"
         },
-        library: rootPath + "src/library/",
+        library: {
+            root: rootPath + "src/library/",
+            db: rootPath + "src/library/db/"
+        },
         route: {
             root: rootPath + "src/route/",
             general: rootPath + "src/route/general/",

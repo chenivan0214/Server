@@ -1,16 +1,8 @@
 'use strict';
 
-var modMysql = require('mysql');
-
-exports.select = function(app, sql, callback) {
-    var objDefine = require(app.data.path.db.define + "mysql.define.js"),
-        objDb = modMysql.createConnection(objDefine);
-
-    objDb.connect();
-    objDb.query(sql, function(err, result, field) {
-        err && console.log(err);
-        callback(result);
-    });
-
-    objDb.end();
-}
+exports.host = "localhost";
+exports.port = "3307";
+exports.user = "root";
+exports.password = "123456";
+exports.database = "test";
+exports.charset = "UTF8_GENERAL_CI";

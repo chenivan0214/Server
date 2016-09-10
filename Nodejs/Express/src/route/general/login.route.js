@@ -2,14 +2,14 @@
 
 exports.url = function(app) {
     app.get('/login', function(req, res) {
-        var objTmp = { notLogin: app.ext._.isUndefined(req.session.account) };
-        res.render('login/index', objTmp);
+        var objTpl = { notLogin: app.ext._.isUndefined(req.session.account) };
+        res.render('login/index', objTpl);
     });
 
     app.post('/login/process', function(req, res, next) {
-        var objTmp = { notLogin: false };
+        var objTpl = { notLogin: false };
 
-        objTmp = Object.assign(objTmp, req.query, req.body);
-        res.render('login/index', objTmp);
+        objTpl = Object.assign(objTpl, req.query, req.body);
+        res.render('login/index', objTpl);
     });
 };

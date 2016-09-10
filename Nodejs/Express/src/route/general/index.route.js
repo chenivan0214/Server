@@ -12,12 +12,12 @@ exports.url = function(app) {
             return;
         }
 
-        var objTmp = {
+        var objTpl = {
             top: {
                 title: "top"
             },
             title: "test"
         };
-        res.render('index/index', objTmp);
+        res.render('index/index', objTpl);
     });
 };

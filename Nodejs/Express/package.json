@@ -18,6 +18,7 @@
     "grunt-contrib-jshint": "^1.0.0",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-express-server": "^0.5.3",
+    "livereload-js": "^2.2.2",
     "load-grunt-tasks": "^3.5.2",
     "lodash": "^4.15.0",
     "logops": "^1.0.1",
